@@ -24,10 +24,5 @@ jobs:
         brew install --cask docker
         open /Applications/Docker.app
         while ! docker system info > /dev/null 2>&1; do sleep 1; done
-    - name: Start Docker service on macOS
-      if: runner.os == 'macOS'
-      run: |
-        sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended &
-        while ! docker system info > /dev/null 2>&1; do sleep 1; done
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag renv_pak_debug:$(date +%s)
