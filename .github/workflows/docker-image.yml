@@ -18,11 +18,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Docker on macOS
-      if: runner.os == 'macOS'
-      run: |
-        brew install --cask docker
-        open /Applications/Docker.app
-        while ! docker system info > /dev/null 2>&1; do sleep 1; done
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag renv_pak_debug:$(date +%s)
